@@ -1,0 +1,51 @@
+All blogs at root?, possible one blog post, nothing at root?
+
+Inplicit: Add way to get to blog/[id] unless already integrated
+Inplicit: Add blog/[id] api route
+
+Per blog at /blog/[id] with following details:
+ - content
+ - comments
+ - add comments section
+ - reply to comments section
+
+
+comment structure:
+ - name of type string
+ - email of type string
+ - comment of type string
+ - replys? of type comment[]
+
+in comment:
+
+comment{
+public required string name {get;set;}
+public required string email {get;set;}
+public required string commentText {get;set;}
+public comment[] replys? {get;set;} = []
+
+add_Reply(replyForm,comment){
+	const replyComment = createComment(replyForm);
+	this.replys.push(replyComment)
+	//Save to JSON, backend save?
+}
+}
+
+in utils:
+create_Comment(form){
+const newcomment = new comment(
+	name=form.name,
+	email=form.email,
+	commentText=form.commentText,
+	replys = []
+)
+return newComment
+}
+
+
+
+
+
+
+
+

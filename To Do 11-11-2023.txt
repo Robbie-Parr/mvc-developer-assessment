@@ -1,0 +1,25 @@
+To Do:
+ - Pull data from JSON file into BlogPost 
+ - Finish replacing Blog content within template
+ - Create display format conversion method to turn input comments into html format
+
+ - Create C# API endpoint for posting form data at /Blog/[id]/AddComment, with a body including the form data
+ - Identify display format for reply messages
+ - Save data back to JSON file
+ - Add form validations
+
+ - Test all added functionality
+ - Check Completeness of solution
+ - Move functions into seperate files to increase seperation of concerns
+ - Code Quality Check
+
+
+Questions for later: 
+ - Should a root be written up in html to give access to the /blog/[id] uri's?
+
+
+To Research:
+ - How to create a C# Post API endpoint
+ - How to save data to a JSON file
+ - How to include React into C# backend? (Stretch)
+
