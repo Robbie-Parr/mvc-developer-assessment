@@ -110,7 +110,7 @@
     <Compile Include="App_Start\Utils\JSONFunctions.cs" />
     <Compile Include="App_Start\Utils\PipeDict\CommentFormatting.cs" />
     <Compile Include="App_Start\Utils\PipeDict\PipeDict.cs" />
-    <Compile Include="App_Start\Utils\utils.cs" />
+    <Compile Include="App_Start\Utils\Utils.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
