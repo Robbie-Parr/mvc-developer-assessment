@@ -44,7 +44,7 @@ return newComment
 
 
 
-
+Endpoint at blog/[id]/reply/[messageId]
 
 
 

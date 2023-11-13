@@ -96,8 +96,7 @@
             const name = document.getElementById('Name').value
             const emailAddress = document.getElementById('EmailAddress').value
             const message = document.getElementById('Message').value
-            if(name.length>0)
-                console.log(window.location)
+            
             fetch(window.location.pathname + "/message", {
                 method: 'post',
                 body: JSON.stringify(
@@ -114,8 +113,32 @@
                 },
                 
             })
+
+            window.location.reload();
+        }
+        const onReply = (id) => {
+            //event.preventDefault();
+            const name = document.getElementById('Name').value
+            const emailAddress = document.getElementById('EmailAddress').value
+            const message = document.getElementById('Message').value
             
-            
+            fetch(window.location.pathname + "/message/"+id+"/reply", {
+                method: 'post',
+                body: JSON.stringify(
+
+                    {
+                        "name": name,
+                        "emailAddress": emailAddress,
+                        "message": message
+                    }
+                ),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+            })
+            window.location.reload();
         }
     </script>
     <script src="/Assets/Scripts/jquery-3.3.1.min.js"></script>
