@@ -57,7 +57,12 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.GetEndpoints.Blog
 
             this.id = context.GetId();
 
-            BlogPost postData = JSONFunctions.GetData(id);
+            JSONFunctions JSONfile = new JSONFunctions(
+                    HttpContext.Current.Server.MapPath("/") +
+                    @"App_Data/Blog-Posts(Modified).json"
+                    );
+
+            BlogPost postData = JSONfile.GetData(id);
             PipeDict values = new PipeDict(postData);
 
             Display(values

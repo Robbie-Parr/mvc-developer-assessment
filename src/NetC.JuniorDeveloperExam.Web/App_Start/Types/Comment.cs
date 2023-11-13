@@ -47,9 +47,11 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Types
         /// Adds a reply to an existing comment
         /// </summary>
         /// <param name="replyForm">The form data obtained from the HTML form</param>
-        public void AddReply(FormObject replyForm)
+        public Comment AddReply(FormObject replyForm)
         {
-            this.replys.Add(Comment.AddComment(replyForm));
+            Comment replyComment = Comment.AddComment(replyForm);
+            this.replys.Add(replyComment);
+            return replyComment;
         }
     };
 }

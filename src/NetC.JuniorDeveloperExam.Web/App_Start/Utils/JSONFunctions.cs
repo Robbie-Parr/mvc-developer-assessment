@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
 {
@@ -15,17 +16,28 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
     ///  - directly interact with comments<br/>
     ///  - load and save data to/from JSON
     /// </summary>
-    public static class JSONFunctions
+    public class JSONFunctions
     {
+
+        public string filePath;
+
+        /// <summary>
+        /// Sets the path to the JSON data file
+        /// </summary>
+        /// <param name="filePath">The Path to the JSON file</param>
+        public JSONFunctions(string filePath)
+        {
+            this.filePath=filePath;
+        }
+
         /// <summary>
         /// Gets the Blog Post data from the JSON file
         /// </summary>
         /// <param name="postId">The integer id of the Blog Post</param>
         /// <returns>The data related to that Blog Post</returns>
-        public static BlogPost GetData(int postId)
-        {
-            string dir = HttpContext.Current.Server.MapPath("/");
-            StreamReader sr = new StreamReader(dir + @"App_Data/Blog-Posts(Modified).json");
+        public BlogPost GetData(int postId)
+        {           
+            StreamReader sr = new StreamReader(filePath);
             string json = sr.ReadToEnd();
             Dictionary<string, List<BlogPost>> jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<BlogPost>>>(json);
             List<BlogPost> data = jsonData["blogPosts"];
@@ -47,13 +59,26 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
         }
 
         /// <summary>
+        /// Gets all the Blog Posts fro the JSON file
+        /// </summary>
+        /// <returns>A List containing all the Blog Posts</returns>
+        public List<BlogPost> GetAllData()
+        {
+            StreamReader sr = new StreamReader(filePath);
+            string json = sr.ReadToEnd();
+            Dictionary<string, List<BlogPost>> jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<BlogPost>>>(json);
+            List<BlogPost> data = jsonData["blogPosts"];
+            sr.Close();
+            return data;
+        }
+
+        /// <summary>
         /// Saves a Blog Post data to the JSON file
         /// </summary>
         /// <param name="postData">All data about the Blog Post that has been changed</param>
-        public static void SaveData(BlogPost postData)
+        public void SaveData(BlogPost postData)
         {
-            string dir = HttpContext.Current.Server.MapPath("/");
-            StreamReader sr = new StreamReader(dir + @"App_Data/Blog-Posts(Modified).json");
+            StreamReader sr = new StreamReader(filePath);
             string json = sr.ReadToEnd();
             Dictionary<string, List<BlogPost>> jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<BlogPost>>>(json);
             List<BlogPost> data = jsonData["blogPosts"];
@@ -75,7 +100,7 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
                 }
             }
 
-            StreamWriter sw = new StreamWriter(dir + @"App_Data/Blog-Posts(Modified).json");
+            StreamWriter sw = new StreamWriter(filePath);
             sw.Write(JsonConvert.SerializeObject(new { blogPosts = result }));
             sw.Close();
 

@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils.PipeDict {
+namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils.PipeDict 
+{
 
     /// <summary>
     /// A Dictionary that enables chaining of methods onto another, 

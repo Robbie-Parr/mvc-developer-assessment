@@ -55,9 +55,14 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.PostEndpoints.CommentEnd
                 return;
             }
 
-            BlogPost postData = JSONFunctions.GetData(id);
+            JSONFunctions JSONfile = new JSONFunctions(
+                    HttpContext.Current.Server.MapPath("/") +
+                    @"App_Data/Blog-Posts(Modified).json"
+                    );
+
+            BlogPost postData = JSONfile.GetData(id);
             postData.comments.Add(Comment.AddComment(requestFromPost));
-            JSONFunctions.SaveData(postData);
+            JSONfile.SaveData(postData);
 
             context.Response.StatusCode = 200;
             context.Response.Write("Complete");

@@ -42,7 +42,7 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils.PipeDict
         {
             return @" <div class='media mb-4 d-flex flex-column container-fluid'>
                     <div class='media mb-4 d-flex justify-content-between container-fluid'>
-                        <img class='d-flex mr-3 rounded-circle user-avatar' src='https://eu.ui-avatars.com/api/?name='" + currentComment.name.Replace(" ", "+") + @"alt='" + currentComment.name + @"'>
+                        <img class='d-flex mr-3 rounded-circle user-avatar' src='https://eu.ui-avatars.com/api/?name=" + currentComment.name.Replace(" ", "+") + @"' alt='" + currentComment.name + @"'>
                         <div class='media-body'>
                             <h5 class='mt-0'>" + currentComment.name + @"<small><em>(" + Utils.ToDate(currentComment.date) + " - " + currentComment.date.ToShortTimeString() + @")</em></small></h5>
                             " + currentComment.message + @"

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-
+using System.Xml;
+using NetC.JuniorDeveloperExam.Web.App_Start.Types;
 using NetC.JuniorDeveloperExam.Web.App_Start.Utils;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.GetEndpoints.Root
@@ -24,13 +26,65 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.GetEndpoints.Root
         public void ProcessRequest(HttpContext context)
         {
             this.context = context;
-            context.WriteLine("TO BE IMPLEMENTED");
-            context.WriteLine("This is the Root of the Blog post application");
-            context.WriteLine();
-            context.WriteLine("Blog avaiable are: ");
-            context.WriteLine("1 at <a href='./blog/1'>blog/1</a>");
-            context.WriteLine("2 at <a href='./blog/2'>blog/2</a>");
-            context.WriteLine("3 at <a href='./blog/3'>blog/3</a>");
+            
+            JSONFunctions JSONfile = new JSONFunctions(
+                    HttpContext.Current.Server.MapPath("/") +
+                    @"App_Data/Blog-Posts(Modified).json"
+                    );
+            List<BlogPost> blogPosts = JSONfile.GetAllData();
+            string replacement = "<br/><br/>";
+
+            foreach(BlogPost post in blogPosts)
+            {
+                replacement+=DisplaySinglePost(post);
+                replacement += "<br/><br/>";
+            }
+            Display(replacement);
+            
+        }
+
+        /// <summary>
+        /// Gets the Template and populates it with all blog post's data
+        /// </summary>
+        /// <param name="replacement">
+        /// A string to place in the HTML, 
+        /// replacing #Posts in the Template.
+        /// </param>
+        public void Display(string replacement)
+        {
+
+            string dir = HttpContext.Current.Server.MapPath("/");
+
+            StreamReader sr = new StreamReader(dir + @"Assets/Html/template2.html");
+
+            string s = sr.ReadToEnd();
+            s = s.Replace("#Posts", replacement);
+
+            context.Write(s);
+            sr.Close();
+        }
+
+        /// <summary>
+        /// Constructs a display format for a single Blog Post
+        /// </summary>
+        /// <param name="post">The Blog Post to format</param>
+        /// <returns>A formatted version of a Blog Post</returns>
+        public string DisplaySinglePost(BlogPost post)
+        {
+            return @"
+                <div class='media mb-4 d-flex flex-column container-fluid'>
+                    <div class='media mb-4 d-flex justify-content-between container-fluid'>
+                        <img class='d-flex mr-3 rounded-circle user-avatar' src='" + post.image + @"' alt='" + post.title + @"'>
+                        <div class='media-body'>
+                            <h4 class='mt-0'>" + post.id + @"<small><em>(" + Utils.Utils.ToDate(post.date) + " - " + post.date.ToShortTimeString() + @")</em></small></h4>
+                            <h1><em>" + post.title + @"</em></h1>
+                            <a href='./blog/" + post.id+@"'><Button>To Post</Button></a>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            ";
         }
 
         /// <summary>

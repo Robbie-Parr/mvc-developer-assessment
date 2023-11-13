@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29503.13
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.JuniorDeveloperExam.Web", "NetC.JuniorDeveloperExam.Web\NetC.JuniorDeveloperExam.Web.csproj", "{CCCC64B9-27C7-4CC1-B5B1-19201377D3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B406685F-0C05-4722-BB3F-40F17C5A212F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CCCC64B9-27C7-4CC1-B5B1-19201377D3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCC64B9-27C7-4CC1-B5B1-19201377D3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCC64B9-27C7-4CC1-B5B1-19201377D3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B406685F-0C05-4722-BB3F-40F17C5A212F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B406685F-0C05-4722-BB3F-40F17C5A212F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B406685F-0C05-4722-BB3F-40F17C5A212F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B406685F-0C05-4722-BB3F-40F17C5A212F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

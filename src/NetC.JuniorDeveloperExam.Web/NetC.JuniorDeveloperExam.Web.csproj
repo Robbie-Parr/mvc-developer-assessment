@@ -117,6 +117,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Html\template2.html" />
     <Content Include="Assets\Scripts\bootstrap.bundle.min.js" />
     <Content Include="Assets\Scripts\unobtrusive-bootstrap.js" />
     <Content Include="Assets\Styles\bootstrap.min.css" />
