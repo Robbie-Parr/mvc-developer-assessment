@@ -34,9 +34,26 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.PostEndpoints.CommentEnd
             this.id = context.GetId();
 
             StreamReader sr = new StreamReader(context.Request.InputStream);
-            FormObject requestFromPost = Json.Decode<FormObject>(sr.ReadToEnd());
+            FormObject requestFromPost = null;
+            try
+            {
+                requestFromPost = Json.Decode<FormObject>(sr.ReadToEnd());
+
+            }
+            catch
+            {
+                context.Response.StatusCode = 400;
+                sr.Close();
+                return;
+            }
             sr.Close();
 
+            if (requestFromPost == null)
+            {
+                context.Response.StatusCode = 400;
+                context.Response.Write("Invalid Request");
+                return;
+            }
 
             BlogPost postData = JSONFunctions.GetData(id);
             postData.comments.Add(Comment.AddComment(requestFromPost));
