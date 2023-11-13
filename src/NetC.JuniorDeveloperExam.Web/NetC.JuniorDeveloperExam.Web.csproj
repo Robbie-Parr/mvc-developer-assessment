@@ -100,14 +100,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Router\GetEndpoints\Blog\Blog.cs" />
     <Compile Include="App_Start\Router\GetEndpoints\Root\Root.cs" />
-    <Compile Include="App_Start\Router\PostEndpoints\Message\Message.cs" />
+    <Compile Include="App_Start\Router\PostEndpoints\CommentEndpoint\CommentEndpoint.cs" />
     <Compile Include="App_Start\Router\PostEndpoints\Reply\Reply.cs" />
     <Compile Include="App_Start\Router\Router.cs" />
     <Compile Include="App_Start\Types\BlogPost.cs" />
     <Compile Include="App_Start\Types\Comment.cs" />
     <Compile Include="App_Start\Types\FormObject.cs" />
-    <Compile Include="App_Start\Utils\Data.cs" />
-    <Compile Include="App_Start\Utils\PipeDict.cs" />
+    <Compile Include="App_Start\Utils\ContextFunctions.cs" />
+    <Compile Include="App_Start\Utils\JSONFunctions.cs" />
+    <Compile Include="App_Start\Utils\PipeDict\CommentFormatting.cs" />
+    <Compile Include="App_Start\Utils\PipeDict\PipeDict.cs" />
     <Compile Include="App_Start\Utils\utils.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

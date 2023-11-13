@@ -97,7 +97,7 @@
             const emailAddress = document.getElementById('EmailAddress').value
             const message = document.getElementById('Message').value
             
-            fetch(window.location.pathname + "/message", {
+            fetch(window.location.pathname + "/comment", {
                 method: 'post',
                 body: JSON.stringify(
                     
@@ -122,7 +122,7 @@
             const emailAddress = document.getElementById('EmailAddress').value
             const message = document.getElementById('Message').value
             
-            fetch(window.location.pathname + "/message/"+id+"/reply", {
+            fetch(window.location.pathname + "/comment/"+id+"/reply", {
                 method: 'post',
                 body: JSON.stringify(
 

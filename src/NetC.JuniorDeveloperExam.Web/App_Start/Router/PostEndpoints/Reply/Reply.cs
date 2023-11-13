@@ -9,37 +9,51 @@ using System.Web.Helpers;
 using System.Web;
 
 using NetC.JuniorDeveloperExam.Web.App_Start.Utils;
+using NetC.JuniorDeveloperExam.Web.App_Start.Utils.PipeDict;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.PostEndpoints.Reply
 {
+    /// <summary>
+    /// IHttpHandler that responds to the /blog/{id}/comment/{commentId}/reply uri 
+    /// </summary>
     public class ReplyHttpHandler : IHttpHandler
     {
         private HttpContext context;
         private int id;
         private int commentId;
 
+        /// <summary>
+        /// Processes the POST request to the 
+        /// /blog/{id}/comment/{commentId}/reply uri, 
+        /// obtaining the blog id and the comment id values
+        /// and adds a reply comment to the specified comment and specified blog post, 
+        /// saving the reply in the json.
+        /// </summary>
+        /// <param name="context">The HttpContext of the request</param>
         public void ProcessRequest(HttpContext context)
         {
             this.context = context;
 
             this.id = context.GetId();
-            this.commentId = context.GetMessageId();
+            this.commentId = context.GetCommentId();
 
             StreamReader sr = new StreamReader(context.Request.InputStream);
             FormObject requestFromPost = Json.Decode<FormObject>(sr.ReadToEnd());
             sr.Close();
 
-            BlogPost postData = Utils.Data.GetData(id);
+            BlogPost postData = JSONFunctions.GetData(id);
             postData.AddReply(commentId, Comment.AddComment(requestFromPost));
             
-            Utils.Data.SaveData(postData);
+            JSONFunctions.SaveData(postData);
 
             context.Response.StatusCode = 200;
             context.Response.Write("Complete");
         }
 
-        
 
+        /// <summary>
+        /// Required to implement IHttpHandler
+        /// </summary>
         public bool IsReusable
         {
             get { return true; }

@@ -10,13 +10,21 @@ using System.Web;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
 {
-    public static class Data
+    /// <summary>
+    /// Gives access to Utilisation functions that:<br/>
+    ///  - directly interact with comments<br/>
+    ///  - load and save data to/from JSON
+    /// </summary>
+    public static class JSONFunctions
     {
-
+        /// <summary>
+        /// Gets the Blog Post data from the JSON file
+        /// </summary>
+        /// <param name="postId">The integer id of the Blog Post</param>
+        /// <returns>The data related to that Blog Post</returns>
         public static BlogPost GetData(int postId)
         {
             string dir = HttpContext.Current.Server.MapPath("/");
-            //StreamReader sr = new StreamReader(dir + @"App_Data/Blog-Posts.json");
             StreamReader sr = new StreamReader(dir + @"App_Data/Blog-Posts(Modified).json");
             string json = sr.ReadToEnd();
             Dictionary<string, List<BlogPost>> jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<BlogPost>>>(json);
@@ -38,6 +46,10 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
             return result;
         }
 
+        /// <summary>
+        /// Saves a Blog Post data to the JSON file
+        /// </summary>
+        /// <param name="postData">All data about the Blog Post that has been changed</param>
         public static void SaveData(BlogPost postData)
         {
             string dir = HttpContext.Current.Server.MapPath("/");
@@ -68,22 +80,6 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
             sw.Close();
 
         }
-
-        public static BlogPost AddReply(this BlogPost postData, int commentId, Comment newComment)
-        {
-            List<Comment> allComments = new List<Comment>();
-
-            foreach (Comment c in postData.comments)
-            {
-                if (c.id == commentId)
-                {
-                    c.replys.Add(newComment);
-                }
-                allComments.Add(c);
-            }
-            postData.comments = allComments;
-
-            return postData;
-        }
+        
     }
 }

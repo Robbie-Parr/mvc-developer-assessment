@@ -9,12 +9,18 @@ using NetC.JuniorDeveloperExam.Web.App_Start.Utils;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.GetEndpoints.Root
 {
+    /// <summary>
+    /// IHttpHandler that responds to the / uri 
+    /// </summary>
     public class RootHttpHandler : IHttpHandler
     {
-        // Override the ProcessRequest method.
         private HttpContext context;
 
-        
+        /// <summary>
+        /// Processes the GET request to the / uri, 
+        /// returning the Response for this page
+        /// </summary>
+        /// <param name="context">The HttpContext of the request</param>
         public void ProcessRequest(HttpContext context)
         {
             this.context = context;
@@ -27,6 +33,9 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start.Router.GetEndpoints.Root
             context.WriteLine("3 at <a href='./blog/3'>blog/3</a>");
         }
 
+        /// <summary>
+        /// Required to implement IHttpHandler
+        /// </summary>
         public bool IsReusable
         {
             get { return true; }

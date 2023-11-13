@@ -19,11 +19,15 @@ namespace NetC.JuniorDeveloperExam.Web
 {
     public class RouteConfig
     {
+        /// <summary>
+        /// Creates IHttpHandler's for each route of the application
+        /// </summary>
+        /// <param name="routes">RouteCollection used for routing</param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.Add(new Route("", new RouteHandler("Root")));
-            routes.Add(new Route("blog/{id}/message", new RouteHandler("Message")));
-            routes.Add(new Route("blog/{id}/message/{messageId}/reply", new RouteHandler("Reply")));
+            routes.Add(new Route("blog/{id}/comment", new RouteHandler("Comment")));
+            routes.Add(new Route("blog/{id}/comment/{commentId}/reply", new RouteHandler("Reply")));
             routes.Add(new Route("blog/{id}", new RouteHandler("Blog")));
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

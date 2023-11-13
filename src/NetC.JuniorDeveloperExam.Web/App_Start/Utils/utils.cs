@@ -11,31 +11,22 @@ using System.Web;
 
 namespace NetC.JuniorDeveloperExam.Web.App_Start.Utils
 {
+    /// <summary>
+    ///  Contains general utilisation functions
+    /// </summary>
     public static class Utils
     {
-        public static void Write(this HttpContext context, string text)
+        /// <summary>
+        /// Converts the Date from a DateTime to the correct format
+        /// </summary>
+        /// <param name="date">The Date to be formatted</param>
+        /// <returns>A formatted date to 'Month Day, Year'</returns>
+        public static string ToDate(DateTime date)
         {
-            context.Response.Write(text);
+            string[] dateParts = date.ToLongDateString().Split(' ');
+            return dateParts[1] + " " + dateParts[0] + ", " + dateParts[2];
         }
 
-        public static void WriteLine(this HttpContext context, string text = "")
-        {
-            context.Response.Write(text + "<br/>");
-        }
-
-        public static int GetId(this HttpContext context)
-        {
-            string[] url = context.Request.Url.AbsolutePath.Split('/');
-
-            return int.Parse(url[2]);
-        }
-
-        public static int GetMessageId(this HttpContext context)
-        {
-            string[] url = context.Request.Url.AbsolutePath.Split('/');
-
-            return int.Parse(url[4]);
-        }
     }
 
 }
